@@ -15,13 +15,22 @@ let codingInterviews = (function(){
             chars.add(inputString[i]);
         }
 
-
         return true;
+    }
 
+    function isPermutation(firstStr, secondStr){
+        if(firstStr.length !== secondStr.length) return false;
+
+        if(firstStr.split('').sort().join('') === secondStr.split('').sort().join('')){
+            return true;
+        }
+
+        return false;
     }
 
     return {
 
-        hasUniqueChars : hasUniqueChars
+        hasUniqueChars : hasUniqueChars,
+        isPermutation : isPermutation
     };
 }());
