@@ -2,6 +2,7 @@ let codingInterviews = (function(){
 'use strict';
 
     function hasUniqueChars(inputString){
+        'use strict';
 
         let chars = new Set();
 
@@ -19,6 +20,7 @@ let codingInterviews = (function(){
     }
 
     function isPermutation(firstStr, secondStr){
+        'use strict';
         if(firstStr.length !== secondStr.length) return false;
 
         if(firstStr.split('').sort().join('') === secondStr.split('').sort().join('')){
@@ -28,9 +30,31 @@ let codingInterviews = (function(){
         return false;
     }
 
+    function isPermutationSol2(firstStr, secondStr){
+        'use strict';
+
+        if(firstStr.length !== secondStr.length) return false;
+
+        let a = [];
+        for(let i=0; i<128; i++) a[i] = 0;
+
+        for(let j=0; j<firstStr.length; j++) a[firstStr.charCodeAt(j)]++;
+
+        for(let k=0; k<secondStr.length; k++){
+            a[secondStr.charCodeAt(k)]--;
+
+            if(a[secondStr.charCodeAt(k)] < 0){
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     return {
 
         hasUniqueChars : hasUniqueChars,
-        isPermutation : isPermutation
+        isPermutation : isPermutation,
+        isPermutationSol2 : isPermutationSol2
     };
 }());
